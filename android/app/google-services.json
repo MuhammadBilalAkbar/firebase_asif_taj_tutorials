@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "409853498968",
+    "project_id": "asif-taj-tutorials",
+    "storage_bucket": "asif-taj-tutorials.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409853498968:android:eebe8352edffc1f77d1c2d",
+        "android_client_info": {
+          "package_name": "com.example.firebase_asif_taj_tutorials"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409853498968-b5p6qa17vafm25c6efh9tdo5gak0o312.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3G1HHtA-QjJPt9DmwIdjidpEBgrvd3ZY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409853498968-b5p6qa17vafm25c6efh9tdo5gak0o312.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
