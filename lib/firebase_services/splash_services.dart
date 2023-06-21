@@ -21,8 +21,8 @@ class SplashServices {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              // builder: (context) => PostScreen(),
-              builder: (context) => UploadImageScreen(),
+              builder: (context) => PostScreen(),
+              // builder: (context) => UploadImageScreen(),
             ),
           );
           // debugPrint('===================================================Navigating to posts_screen.dart');
