@@ -2,12 +2,12 @@ import 'package:firebase_asif_taj_tutorials/main.dart';
 import 'package:flutter/material.dart';
 
 class RoundButton extends StatelessWidget {
-  const RoundButton(
-      {Key? key,
-      required this.title,
-      required this.onTap,
-      this.loading = false})
-      : super(key: key);
+  const RoundButton({
+    Key? key,
+    required this.title,
+    required this.onTap,
+    this.loading = false,
+  }) : super(key: key);
 
   final String title;
   final VoidCallback onTap;
@@ -25,10 +25,13 @@ class RoundButton extends StatelessWidget {
         ),
         child: Center(
           child: loading
-              ? CircularProgressIndicator(strokeWidth: 3, color: Colors.white,)
+              ? const CircularProgressIndicator(
+                  strokeWidth: 3,
+                  color: Colors.white,
+                )
               : Text(
                   title,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
         ),
       ),

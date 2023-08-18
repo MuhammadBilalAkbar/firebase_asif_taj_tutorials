@@ -33,7 +33,7 @@ class _PostScreenState extends State<PostScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Posts of Realtime Database'),
+        title: const Text('Posts of Realtime Database'),
         actions: [
           IconButton(
             onPressed: () {
@@ -41,7 +41,7 @@ class _PostScreenState extends State<PostScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LoginScreen(),
+                    builder: (context) => const LoginScreen(),
                   ),
                 );
                 debugPrint(
@@ -49,9 +49,10 @@ class _PostScreenState extends State<PostScreen> {
               }).onError((error, stackTrace) {
                 Utils().showToastMessage(error.toString());
               });
-              debugPrint('Signing out user ${_logOutAuth.currentUser!.email}\n${_logOutAuth.currentUser!.emailVerified}\n${_logOutAuth.currentUser}');
+              debugPrint(
+                  'Signing out user ${_logOutAuth.currentUser!.email}\n${_logOutAuth.currentUser!.emailVerified}\n${_logOutAuth.currentUser}');
             },
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
@@ -83,7 +84,7 @@ class _PostScreenState extends State<PostScreen> {
           //     },
           //   ),
           // ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
@@ -101,7 +102,7 @@ class _PostScreenState extends State<PostScreen> {
           ),
           Expanded(
             child: FirebaseAnimatedList(
-              defaultChild: Center(child: Text('Loading')),
+              defaultChild: const Center(child: Text('Loading')),
               query: _getPostDatabaseRef,
               itemBuilder: (BuildContext context, DataSnapshot snapshot,
                   animation, index) {
@@ -112,15 +113,15 @@ class _PostScreenState extends State<PostScreen> {
                     title: Text(title),
                     subtitle: Text(id),
                     trailing: PopupMenuButton(
-                        icon: Icon(Icons.more_vert),
+                        icon: const Icon(Icons.more_vert),
                         itemBuilder: (context) {
                           FocusManager.instance.primaryFocus?.unfocus();
                           return [
                             PopupMenuItem(
                               value: 1,
                               child: ListTile(
-                                leading: Icon(Icons.edit),
-                                title: Text('Edit'),
+                                leading: const Icon(Icons.edit),
+                                title: const Text('Edit'),
                                 onTap: () {
                                   Navigator.pop(context);
                                   showEditDialog(title, id);
@@ -130,8 +131,8 @@ class _PostScreenState extends State<PostScreen> {
                             PopupMenuItem(
                               value: 2,
                               child: ListTile(
-                                leading: Icon(Icons.delete),
-                                title: Text('Delete'),
+                                leading: const Icon(Icons.delete),
+                                title: const Text('Delete'),
                                 onTap: () {
                                   Navigator.pop(context);
                                   // _getPostDatabaseRef.child(id).remove();
@@ -162,13 +163,13 @@ class _PostScreenState extends State<PostScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddPostScreen(),
+              builder: (context) => const AddPostScreen(),
             ),
           );
           debugPrint(
               '===================================================Navigating to add_post.dart');
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -179,11 +180,11 @@ class _PostScreenState extends State<PostScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Update'),
+          title: const Text('Update'),
           content: Container(
             child: TextField(
               controller: editController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Edit',
               ),
             ),
@@ -193,22 +194,19 @@ class _PostScreenState extends State<PostScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
-                _getPostDatabaseRef
-                    .child(id)
-                    .update({'title': editController.text.toLowerCase()})
-                    .then((value) {
+                _getPostDatabaseRef.child(id).update(
+                    {'title': editController.text.toLowerCase()}).then((value) {
                   Utils().showToastMessage('Post updated successfully');
-                })
-                    .onError((error, stackTrace) {
-                      Utils().showToastMessage(error.toString());
+                }).onError((error, stackTrace) {
+                  Utils().showToastMessage(error.toString());
                 });
                 Navigator.pop(context);
               },
-              child: Text('Update'),
+              child: const Text('Update'),
             ),
           ],
         );
@@ -216,39 +214,32 @@ class _PostScreenState extends State<PostScreen> {
     );
   }
 
-
-
-
-
-
-
   Future<void> showDeleteDialog(String id) async {
     return showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Do you want to delete this post?'),
+          title: const Text('Do you want to delete this post?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
-                _getPostDatabaseRef
-                    .child(id)
-                    .remove()
-                    .then((value) {
+                _getPostDatabaseRef.child(id).remove().then((value) {
                   Utils().showToastMessage('Post deleted successfully');
-                })
-                    .onError((error, stackTrace) {
+                }).onError((error, stackTrace) {
                   Utils().showToastMessage(error.toString());
                 });
                 Navigator.pop(context);
               },
-              child: Text('Delete', style: TextStyle(color: Colors.red),),
+              child: const Text(
+                'Delete',
+                style: TextStyle(color: Colors.red),
+              ),
             ),
           ],
         );

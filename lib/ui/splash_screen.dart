@@ -9,7 +9,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   SplashServices splashServices = SplashServices();
 
   @override
@@ -18,11 +17,15 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     splashServices.isLogin(context);
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Text('Firebase Tutorials', style: TextStyle(fontSize: 30),),
+        child: Text(
+          'Firebase Tutorials',
+          style: TextStyle(fontSize: 30),
+        ),
       ),
     );
   }

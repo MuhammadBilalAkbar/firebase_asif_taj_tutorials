@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>409853498968-1j7lv3ratdcou0psq12g0s7vrf5g5pt3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.409853498968-1j7lv3ratdcou0psq12g0s7vrf5g5pt3</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>409853498968-m3v6nvockj36chem3nfblso69m2hes0s.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC1VXaP2rk7Gd09EFZu1ugDRO34nmIkGlk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>409853498968</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.firebaseAsifTajTutorials</string>
+	<key>PROJECT_ID</key>
+	<string>asif-taj-tutorials</string>
+	<key>STORAGE_BUCKET</key>
+	<string>asif-taj-tutorials.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:409853498968:ios:164873a14720bd4c7d1c2d</string>
+	<key>DATABASE_URL</key>
+	<string>https://asif-taj-tutorials-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

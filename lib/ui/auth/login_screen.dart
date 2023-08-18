@@ -1,4 +1,3 @@
-import 'package:firebase_asif_taj_tutorials/posts/add_post.dart';
 import 'package:firebase_asif_taj_tutorials/posts/posts_screen.dart';
 import 'package:firebase_asif_taj_tutorials/ui/auth/signup_screen.dart';
 import 'package:firebase_asif_taj_tutorials/ui/widgets/round_button.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../forgot_password.dart';
+import 'login_with_phone_number.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
           appBar: AppBar(
             // automaticallyImplyLeading: false,
             centerTitle: true,
-            title: Text('Login'),
+            title: const Text('Login'),
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Email',
                           prefixIcon: Icon(Icons.email),
                         ),
@@ -73,12 +73,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextFormField(
                         keyboardType: TextInputType.text,
                         controller: passwordController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Password',
                           prefixIcon: Icon(Icons.lock),
                         ),
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 RoundButton(
                   loading: loading,
                   title: 'Login',
@@ -109,52 +109,54 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ForgotPasswordScreen(),
+                          builder: (context) => const ForgotPasswordScreen(),
                         ),
                       );
                     },
-                    child: Text('Forgot Password?'),
+                    child: const Text('Forgot Password?'),
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Don\'t have account?'),
+                    const Text('Don\'t have account?'),
                     TextButton(
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SignUpScreen(),
+                            builder: (context) => const SignUpScreen(),
                           ),
                         );
                         debugPrint(
                             '===================================================Navigating to signup_screen.dart');
                       },
-                      child: Text('Sing up'),
+                      child: const Text('Sing up'),
                     ),
                   ],
                 ),
-                SizedBox(height: 30),
-                // InkWell(
-                //   onTap: () {
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //         builder: (context) => LoginWithPhoneNumber(),
-                //       ),
-                //     );
-                //   },
-                //   child: Container(
-                //     height: 50,
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(50),
-                //       border: Border.all(color: Colors.black)
-                //     ),
-                //     child: Center(child: Text('Login With Phone Number'))
-                //   ),
-                // ),
+                const SizedBox(height: 30),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginWithPhoneNumber(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(color: Colors.black),
+                    ),
+                    child: const Center(
+                      child: Text('Login With Phone Number'),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -177,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => PostScreen(),
+          builder: (context) => const PostScreen(),
         ),
       );
       debugPrint(

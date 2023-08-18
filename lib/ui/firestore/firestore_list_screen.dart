@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_asif_taj_tutorials/posts/add_post.dart';
 import 'package:firebase_asif_taj_tutorials/ui/auth/login_screen.dart';
 import 'package:firebase_asif_taj_tutorials/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 
 import 'add_firestore_data.dart';
 
@@ -19,13 +16,16 @@ class FireStoreScreen extends StatefulWidget {
 class _FireStoreScreenState extends State<FireStoreScreen> {
   final FirebaseAuth _logOutAuth = FirebaseAuth.instance;
   final editController = TextEditingController();
-  final fireStoreSnapshots = FirebaseFirestore.instance.collection('users').snapshots();
-  CollectionReference fireStoreCollectionRef = FirebaseFirestore.instance.collection('users');
+  final fireStoreSnapshots =
+      FirebaseFirestore.instance.collection('users').snapshots();
+  CollectionReference fireStoreCollectionRef =
+      FirebaseFirestore.instance.collection('users');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Firebase Firestore Post'),
+        title: const Text('Firebase Firestore Post'),
         actions: [
           IconButton(
             onPressed: () {
@@ -33,7 +33,7 @@ class _FireStoreScreenState extends State<FireStoreScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LoginScreen(),
+                    builder: (context) => const LoginScreen(),
                   ),
                 );
                 debugPrint(
@@ -43,20 +43,21 @@ class _FireStoreScreenState extends State<FireStoreScreen> {
               });
               debugPrint('Signing out user ${_logOutAuth.currentUser!.email}');
             },
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
       body: Column(
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           StreamBuilder<QuerySnapshot>(
               stream: fireStoreSnapshots,
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting)
-                  return CircularProgressIndicator();
-                if (snapshot.hasError) return Text('Some error');
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                }
+                if (snapshot.hasError) return const Text('Some error');
                 return Expanded(
                   child: ListView.builder(
                       itemCount: snapshot.data!.docs.length,
@@ -69,14 +70,14 @@ class _FireStoreScreenState extends State<FireStoreScreen> {
                           title: Text(title),
                           subtitle: Text(id),
                           trailing: PopupMenuButton(
-                            icon: Icon(Icons.more_vert),
+                            icon: const Icon(Icons.more_vert),
                             itemBuilder: (BuildContext context) {
                               return [
                                 PopupMenuItem(
                                   value: 1,
                                   child: ListTile(
-                                    leading: Icon(Icons.edit),
-                                    title: Text('Edit'),
+                                    leading: const Icon(Icons.edit),
+                                    title: const Text('Edit'),
                                     onTap: () {
                                       Navigator.pop(context);
                                       showEditDialog(title, id);
@@ -86,8 +87,8 @@ class _FireStoreScreenState extends State<FireStoreScreen> {
                                 PopupMenuItem(
                                   value: 2,
                                   child: ListTile(
-                                    leading: Icon(Icons.edit),
-                                    title: Text('Delete'),
+                                    leading: const Icon(Icons.edit),
+                                    title: const Text('Delete'),
                                     onTap: () {
                                       Navigator.pop(context);
                                       showDeleteDialog(id);
@@ -108,13 +109,13 @@ class _FireStoreScreenState extends State<FireStoreScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddFirestoreDataScreen(),
+              builder: (context) => const AddFirestoreDataScreen(),
             ),
           );
           debugPrint(
               '===================================================Navigating to add_firestore_data.dart');
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -125,13 +126,11 @@ class _FireStoreScreenState extends State<FireStoreScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Update'),
-          content: Container(
-            child: TextField(
-              controller: editController,
-              decoration: InputDecoration(
-                hintText: 'Edit',
-              ),
+          title: const Text('Update'),
+          content: TextField(
+            controller: editController,
+            decoration: const InputDecoration(
+              hintText: 'Edit',
             ),
           ),
           actions: [
@@ -139,61 +138,56 @@ class _FireStoreScreenState extends State<FireStoreScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
                 fireStoreCollectionRef.doc(id).update({
-                  'title' : editController.text.toLowerCase(),
+                  'title': editController.text.toLowerCase(),
                 }).then((value) {
-                  Utils().showToastMessage('Firebase Firestore Post updated successfully');
+                  Utils().showToastMessage(
+                      'Firebase Firestore Post updated successfully');
                 }).onError((error, stackTrace) {
                   Utils().showToastMessage(error.toString());
                 });
                 Navigator.pop(context);
               },
-              child: Text('Update'),
+              child: const Text('Update'),
             ),
           ],
         );
       },
     );
   }
-
-
-
-
-
-
 
   Future<void> showDeleteDialog(String id) async {
     return showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Do you want to delete?'),
+          title: const Text('Do you want to delete?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
                 fireStoreCollectionRef.doc(id).delete().then((value) {
-                  Utils().showToastMessage('Firebase Firestore Post deleted successfully');
+                  Utils().showToastMessage(
+                      'Firebase Firestore Post deleted successfully');
                 }).onError((error, stackTrace) {
                   Utils().showToastMessage(error.toString());
                 });
                 Navigator.pop(context);
               },
-              child: Text('Delete'),
+              child: const Text('Delete'),
             ),
           ],
         );
       },
     );
   }
-
 }
